@@ -1,0 +1,61 @@
+---
+import ServicePageLayout from '@/layouts/ServicePageLayout.astro';
+import FeatureList from '@/components/sections/FeatureList.astro';
+
+const features = [
+  { title: 'Initial Workspace Setup', body: 'Full account setup on your own domain, configured correctly from the start.' },
+  { title: 'Domain Verification', body: 'Verifying ownership of your domain with Google and connecting it properly.' },
+  { title: 'User Accounts', body: 'Setting up accounts for you and your team, with the right access for each person.' },
+  { title: 'Gmail Configuration', body: 'Professional email on your own domain, delivered through Gmail\u2019s interface and apps.' },
+  { title: 'Email Aliases', body: 'Additional addresses like info@ or sales@ that route to the right inbox.' },
+  { title: 'Google Groups', body: 'Shared addresses and mailing lists for teams or departments.' },
+  { title: 'Shared Drives', body: 'Organized, permission-controlled storage your team can access together.' },
+  { title: 'Calendar', body: 'Shared scheduling that works across your team and with outside clients.' },
+  { title: 'Security Settings', body: 'Sensible defaults for password policy, sharing, and account recovery.' },
+  { title: 'Two-Step Verification', body: 'Added account protection configured across your organization.' },
+  { title: 'Administrative Support', body: 'Ongoing help with settings, permissions, and day-to-day administration.' },
+  { title: 'Onboarding & Offboarding', body: 'A clean process for adding new employees and securely removing departing ones.' },
+];
+---
+
+<ServicePageLayout
+  title="Google Workspace Setup & Support for Small Businesses"
+  description="Compassline Technology sets up and manages Google Workspace for small businesses: domain verification, users, Gmail, security, and ongoing administration."
+  path="/google-workspace"
+  pageLabel="Google Workspace"
+  eyebrow="Google Workspace"
+  heroHeading="Google Workspace Setup & Support for Small Businesses"
+  heroSubheading="Professional email, shared calendars, and secure file storage on your own domain — set up correctly and supported over time."
+  primaryCta={{ label: 'Get Help With Google Workspace', href: '/contact?service=google-workspace' }}
+  secondaryCta={{ label: 'Schedule a Consultation', href: '/contact?service=google-workspace' }}
+  serviceType="Google Workspace Setup and Administration"
+  finalCtaHeading="Ready to move off free Gmail?"
+  finalCtaBody="We'll set up Google Workspace on your domain and handle the administration from there."
+  related={[
+    { title: 'Business Email', description: 'The email side of Workspace in more detail: aliases, deliverability, and security.', href: '/business-email' },
+    { title: 'Technology Services', description: 'Domain and DNS work that Workspace setup depends on.', href: '/technology-services' },
+  ]}
+>
+  <section class="section bg-white border-t border-b border-mist">
+    <div class="container-content max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-5">A Google Workspace consultant who handles the whole setup</h2>
+      <p class="text-ink/70 leading-relaxed mb-4">
+        Google Workspace gives your business Gmail, Calendar, Drive, and Meet on your own domain, with
+        the administrative controls a growing team needs. The setup involves more than creating an
+        account &mdash; domain verification, DNS records, security settings, and user permissions all
+        need to be configured correctly, or things like email deliverability can break silently.
+      </p>
+      <p class="text-ink/70 leading-relaxed">
+        Whether you're moving from a free Gmail address, migrating from another provider, or setting up
+        Workspace for the first time, we handle the configuration and stay on as your ongoing Workspace
+        administrator.
+      </p>
+    </div>
+  </section>
+
+  <FeatureList
+    heading="What we set up and manage"
+    subheading="From first-time setup to day-to-day administration."
+    features={features}
+  />
+</ServicePageLayout>

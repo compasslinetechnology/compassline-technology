@@ -1,0 +1,86 @@
+---
+import { site, primaryNav } from '@/site.config';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
+---
+
+<header class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-mist">
+  <div class="container-content flex items-center justify-between h-20">
+    <a href="/" class="flex items-center gap-2.5 group" aria-label={`${site.name} home`}>
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="15" cy="15" r="13.5" stroke="#14263F" stroke-width="1.5"/>
+        <path d="M9 19L16.5 9.5L14 15.5L21 12.5L13.5 21.5L16 15L9 19Z" fill="#A9824C"/>
+      </svg>
+      <span class="font-display text-lg font-semibold text-navy tracking-tight">Compassline<span class="text-brass">.</span></span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
+      {primaryNav.slice(0, -1).map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-sm font-medium transition-colors',
+            isActive(item.href) ? 'text-navy' : 'text-ink/70 hover:text-navy',
+          ]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden lg:block">
+      <a href="/contact" class="btn-primary">Schedule a Consultation</a>
+    </div>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-full text-navy"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <svg id="icon-open" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 6H19M3 11H19M3 16H19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+      <svg id="icon-close" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden">
+        <path d="M5 5L17 17M17 5L5 17" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-mist bg-paper">
+    <nav aria-label="Mobile" class="container-content flex flex-col py-4">
+      {primaryNav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'py-3 text-base font-medium border-b border-mist/70 last:border-0',
+            isActive(item.href) ? 'text-navy' : 'text-ink/80',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href="/contact" class="btn-primary mt-5 w-full">Schedule a Consultation</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('hidden') === false;
+    menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+  });
+</script>

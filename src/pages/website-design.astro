@@ -1,0 +1,59 @@
+---
+import ServicePageLayout from '@/layouts/ServicePageLayout.astro';
+import FeatureList from '@/components/sections/FeatureList.astro';
+
+const features = [
+  { title: 'Custom Website Design', body: 'Built around your business, your services, and how your customers actually find and evaluate you — not a generic template.' },
+  { title: 'Mobile Responsive Design', body: 'Designed to look and work well on phones and tablets first, since that\u2019s where most local customers will find you.' },
+  { title: 'SEO-Friendly Development', body: 'Clean semantic structure, proper headings, and fast-loading pages so search engines can understand and rank your site.' },
+  { title: 'Performance Optimization', body: 'Optimized images, minimal scripts, and efficient code so your site loads quickly on any connection.' },
+  { title: 'SSL & Security', body: 'Every site is served securely over HTTPS, with sensible security practices configured from launch.' },
+  { title: 'Contact Forms', body: 'Forms that route inquiries directly to your inbox, so leads don\u2019t get lost.' },
+  { title: 'Google Maps Integration', body: 'Make it easy for local customers to find your location and get directions.' },
+  { title: 'Google Business Profile Integration', body: 'Connect your website with your Google Business Profile for consistent local presence.' },
+  { title: 'Analytics', body: 'Understand where your visitors come from and what they do on your site.' },
+  { title: 'Hosting Included', body: 'Fast, reliable hosting configured and managed as part of your website.' },
+  { title: 'Ongoing Maintenance', body: 'Updates, changes, and troubleshooting available after launch — not a one-and-done handoff.' },
+];
+---
+
+<ServicePageLayout
+  title="Professional Website Design for Small Businesses"
+  description="Compassline Technology builds fast, modern, mobile-friendly websites for small businesses designed to build trust and generate leads."
+  path="/website-design"
+  pageLabel="Website Design"
+  eyebrow="Websites"
+  heroHeading="Professional Website Design for Small Businesses"
+  heroSubheading="A fast, modern, mobile-friendly website designed to build trust with your customers and generate real leads for your business."
+  primaryCta={{ label: 'Build My Website', href: '/contact?service=website-design' }}
+  secondaryCta={{ label: 'Get a Website Quote', href: '/contact?service=website-design' }}
+  serviceType="Small Business Website Design"
+  finalCtaHeading="Ready for a website that works as hard as you do?"
+  finalCtaBody="Tell us about your business and we'll walk you through what a new site could look like."
+  related={[
+    { title: 'Website Management', description: 'Keep your new site fast, secure, and up to date after launch.', href: '/website-management' },
+    { title: 'Technology Services', description: 'Domain, DNS, and the technical foundation your website depends on.', href: '/technology-services' },
+  ]}
+>
+  <section class="section bg-white border-t border-b border-mist">
+    <div class="container-content max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-5">A website built to be found, and to convert</h2>
+      <p class="text-ink/70 leading-relaxed mb-4">
+        A website should do more than look good. It should help the right customers find your business,
+        understand what you offer, and feel confident enough to reach out. We design every site around
+        that goal first, and the visual design second.
+      </p>
+      <p class="text-ink/70 leading-relaxed">
+        We can't promise a specific search ranking &mdash; no one honestly can &mdash; but we build every
+        site on the technical fundamentals search engines look for: clean structure, fast load times, and
+        content that actually answers what your customers are searching for.
+      </p>
+    </div>
+  </section>
+
+  <FeatureList
+    heading="What's included"
+    subheading="Every Compassline website is built on the same solid foundation, whether you're launching your first site or replacing an outdated one."
+    features={features}
+  />
+</ServicePageLayout>

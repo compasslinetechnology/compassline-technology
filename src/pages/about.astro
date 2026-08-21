@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Breadcrumbs from '@/components/sections/Breadcrumbs.astro';
+import FinalCTA from '@/components/sections/FinalCTA.astro';
+---
+
+<BaseLayout
+  title="Technology With Direction"
+  description="Compassline Technology exists to simplify technology decisions for small businesses and provide a dependable technology partner — guiding your business forward."
+  path="/about"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }]}
+>
+  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }]} />
+
+  <Hero
+    eyebrow="About Compassline"
+    heading="Technology With Direction"
+    subheading="Businesses today have no shortage of technology choices. What most are missing is someone to help figure out which direction actually makes sense."
+    primaryCta={{ label: 'Schedule a Consultation', href: '/contact' }}
+    compact
+  />
+
+  <section class="section bg-paper">
+    <div class="container-content max-w-3xl">
+      <div class="reveal">
+        <p class="eyebrow mb-4">The Name</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-5">Why "Compassline"</h2>
+        <p class="text-ink/70 leading-relaxed mb-4">
+          A compassline is the course you plot before you move &mdash; a direction chosen with intention,
+          not guesswork. That's the idea behind the name: technology decisions made deliberately, with a
+          clear sense of where they're taking the business, rather than a scramble of disconnected tools
+          picked one at a time under pressure.
+        </p>
+        <p class="text-ink/70 leading-relaxed">
+          Small businesses are often expected to make website, email, domain, and security decisions with
+          the same confidence as a company with a full IT department, and without any of the support.
+          Compassline Technology exists to close that gap: to simplify the decisions, handle the technical
+          work, and give small businesses a dependable partner instead of a pile of vendor logins.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-navy text-paper">
+    <div class="container-content max-w-3xl">
+      <div class="reveal">
+        <p class="eyebrow mb-4">How We Work</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-5">Guiding Your Business Forward</h2>
+        <p class="text-paper/75 leading-relaxed mb-4">
+          That's not just a tagline &mdash; it's the standard we hold the work to. Every engagement starts
+          with understanding the business first, then matching the technology to it, rather than fitting
+          the business into whatever's easiest to sell. Websites, Google Workspace, business email,
+          domains, and hosting are treated as one connected system, because that's how a business
+          actually experiences them.
+        </p>
+        <p class="text-paper/75 leading-relaxed">
+          If something is unclear or outside our expertise, we'll say so directly rather than guess. Small
+          businesses deserve technology guidance they can actually trust.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Let's figure out your next step"
+    body="Whether that's a first website, a Workspace migration, or just getting your email cleaned up — we're happy to talk it through."
+    primaryCta={{ label: 'Schedule a Consultation', href: '/contact' }}
+  />
+</BaseLayout>

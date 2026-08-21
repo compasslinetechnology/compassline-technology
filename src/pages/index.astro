@@ -1,0 +1,88 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import TrustStatement from '@/components/sections/TrustStatement.astro';
+import ServiceCardGrid from '@/components/sections/ServiceCardGrid.astro';
+import WhyCompassline from '@/components/sections/WhyCompassline.astro';
+import ProcessSteps from '@/components/sections/ProcessSteps.astro';
+import FinalCTA from '@/components/sections/FinalCTA.astro';
+
+const services = [
+  {
+    icon: 'website' as const,
+    title: 'Small Business Website Design',
+    description: 'Professional, responsive websites designed around your business, services, brand, and goals.',
+    href: '/website-design',
+    cta: 'Build My Website',
+  },
+  {
+    icon: 'workspace' as const,
+    title: 'Google Workspace Setup & Management',
+    description: 'Domain verification, users, Gmail, Groups, aliases, organizational configuration, and ongoing administration.',
+    href: '/google-workspace',
+    cta: 'Get Help With Workspace',
+  },
+  {
+    icon: 'email' as const,
+    title: 'Professional Business Email',
+    description: 'Custom domain email, Gmail configuration, SPF, DKIM, DMARC, aliases, Groups, and email security.',
+    href: '/business-email',
+    cta: 'Improve My Business Email',
+  },
+  {
+    icon: 'dns' as const,
+    title: 'Domain & DNS Management',
+    description: 'Domain registration assistance, DNS management, Cloudflare configuration, redirects, and troubleshooting.',
+    href: '/technology-services',
+    cta: 'Get DNS Help',
+  },
+  {
+    icon: 'hosting' as const,
+    title: 'Website Hosting & Management',
+    description: 'Hosting, deployment, SSL, updates, monitoring, backups, performance, and ongoing website changes.',
+    href: '/website-management',
+    cta: 'Learn About Management',
+  },
+  {
+    icon: 'support' as const,
+    title: 'Small Business Technology Support',
+    description: "Practical technology assistance for businesses that don't need or have an internal IT department.",
+    href: '/technology-services',
+    cta: 'Talk About My Technology',
+  },
+];
+---
+
+<BaseLayout
+  title="Technology That Moves Your Business Forward"
+  description="Compassline Technology helps small businesses build professional websites, manage Google Workspace, secure business email, and simplify the technology behind their business."
+  path="/"
+>
+  <Hero
+    eyebrow="Compassline Technology"
+    heading="Technology That Moves Your Business Forward"
+    subheading="Compassline Technology helps small businesses build professional websites, manage Google Workspace, secure business email, and simplify the technology behind their business."
+    primaryCta={{ label: 'Schedule a Consultation', href: '/contact' }}
+    secondaryCta={{ label: 'Explore Our Services', href: '#services' }}
+  />
+
+  <TrustStatement />
+
+  <div id="services">
+    <ServiceCardGrid
+      heading="Everything your business needs, handled by one team"
+      subheading="From your first website to the systems that keep it running, each service is designed to work together."
+      services={services}
+    />
+  </div>
+
+  <WhyCompassline />
+  <ProcessSteps />
+
+  <FinalCTA
+    heading="Ready to Move Your Business Forward?"
+    body="Tell us where your technology stands today, and we'll help you figure out the right next step."
+    primaryCta={{ label: 'Schedule a Consultation', href: '/contact' }}
+    secondaryCta={{ label: 'Get a Website Quote', href: '/contact?service=website-design' }}
+  />
+</BaseLayout>

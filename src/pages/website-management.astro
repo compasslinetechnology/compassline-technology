@@ -1,0 +1,58 @@
+---
+import ServicePageLayout from '@/layouts/ServicePageLayout.astro';
+import FeatureList from '@/components/sections/FeatureList.astro';
+
+const features = [
+  { title: 'Website Hosting', body: 'Fast, reliable hosting managed on your behalf, with no separate hosting account to maintain.' },
+  { title: 'Content Updates', body: 'Text, image, and page changes handled without you needing to touch the code.' },
+  { title: 'Security', body: 'Ongoing attention to software updates and common vulnerabilities.' },
+  { title: 'SSL', body: 'Certificates kept current so your site stays secure and trusted by browsers.' },
+  { title: 'DNS', body: 'Domain and DNS records managed alongside your hosting, so changes stay coordinated.' },
+  { title: 'Performance Monitoring', body: 'Keeping an eye on load times and uptime so problems get caught early.' },
+  { title: 'Analytics', body: 'Regular visibility into how your site is performing and how visitors use it.' },
+  { title: 'Website Changes', body: 'Ongoing small changes and additions as your business evolves.' },
+  { title: 'Troubleshooting', body: 'Someone to call when something breaks, instead of figuring it out alone.' },
+  { title: 'Technical Support', body: 'General support for the technology tied to your website.' },
+];
+---
+
+<ServicePageLayout
+  title="Website Management Without the Headaches"
+  description="Compassline Technology manages your website after launch: hosting, security, updates, and ongoing support, so it stays fast and current."
+  path="/website-management"
+  pageLabel="Website Management"
+  eyebrow="Website Management"
+  heroHeading="Website Management Without the Headaches"
+  heroSubheading="A website is never really finished. We stay on as your ongoing partner instead of disappearing after launch."
+  primaryCta={{ label: 'Learn About Management Plans', href: '/contact?service=website-management' }}
+  secondaryCta={{ label: 'Request Support', href: '/contact?service=website-management' }}
+  serviceType="Website Hosting and Management"
+  finalCtaHeading="Already have a website that needs a home?"
+  finalCtaBody="We can take over hosting and management for an existing site, or manage one we build for you."
+  related={[
+    { title: 'Website Design', description: 'Need a new site before it needs ongoing management? Start here.', href: '/website-design' },
+    { title: 'Technology Services', description: 'Broader technology support beyond the website itself.', href: '/technology-services' },
+  ]}
+>
+  <section class="section bg-white border-t border-b border-mist">
+    <div class="container-content max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-5">A partner after launch, not just before it</h2>
+      <p class="text-ink/70 leading-relaxed mb-4">
+        A lot of small business websites are left to drift after they go live: software goes unpatched,
+        content goes stale, and nobody notices when something quietly breaks. Website management is
+        about staying attentive to your site over time &mdash; making updates, watching performance, and
+        being available when something needs fixing.
+      </p>
+      <p class="text-ink/70 leading-relaxed">
+        We offer ongoing management plans built around how actively your site needs attention. Exact
+        pricing depends on your site and how much ongoing support you need &mdash; we'll walk through the
+        options during a consultation.
+      </p>
+    </div>
+  </section>
+
+  <FeatureList
+    heading="What ongoing management covers"
+    features={features}
+  />
+</ServicePageLayout>

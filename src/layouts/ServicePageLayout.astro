@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Breadcrumbs from '@/components/sections/Breadcrumbs.astro';
+import RelatedServices, { type RelatedLink } from '@/components/sections/RelatedServices.astro';
+import FinalCTA from '@/components/sections/FinalCTA.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  pageLabel: string; // short breadcrumb label, e.g. "Website Design"
+  eyebrow?: string;
+  heroHeading: string;
+  heroSubheading: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  serviceType: string;
+  related: RelatedLink[];
+  finalCtaHeading: string;
+  finalCtaBody?: string;
+}
+
+const {
+  title,
+  description,
+  path,
+  pageLabel,
+  eyebrow,
+  heroHeading,
+  heroSubheading,
+  primaryCta,
+  secondaryCta,
+  serviceType,
+  related,
+  finalCtaHeading,
+  finalCtaBody,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  service={{ serviceType, description, path }}
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: pageLabel, path },
+  ]}
+>
+  <Breadcrumbs
+    items={[
+      { name: 'Home', path: '/' },
+      { name: pageLabel, path },
+    ]}
+  />
+  <Hero
+    eyebrow={eyebrow}
+    heading={heroHeading}
+    subheading={heroSubheading}
+    primaryCta={primaryCta}
+    secondaryCta={secondaryCta}
+    compact
+  />
+
+  <slot />
+
+  <RelatedServices items={related} />
+  <FinalCTA heading={finalCtaHeading} body={finalCtaBody} primaryCta={{ label: 'Schedule a Consultation', href: '/contact' }} />
+</BaseLayout>

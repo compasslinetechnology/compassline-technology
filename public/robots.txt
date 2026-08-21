@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://compasslinetechnology.com/sitemap.xml

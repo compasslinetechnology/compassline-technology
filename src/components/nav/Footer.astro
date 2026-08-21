@@ -1,0 +1,48 @@
+---
+import { site, footerServiceLinks, footerCompanyLinks } from '@/site.config';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy text-paper">
+  <div class="container-content py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div class="md:col-span-2">
+        <a href="/" class="flex items-center gap-2.5" aria-label={`${site.name} home`}>
+          <svg width="26" height="26" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="15" cy="15" r="13.5" stroke="#F2F4F1" stroke-width="1.5"/>
+            <path d="M9 19L16.5 9.5L14 15.5L21 12.5L13.5 21.5L16 15L9 19Z" fill="#A9824C"/>
+          </svg>
+          <span class="font-display text-lg font-semibold">Compassline<span class="text-brass">.</span></span>
+        </a>
+        <p class="mt-4 text-sm text-paper/70 max-w-sm leading-relaxed">{site.description}</p>
+        <p class="mt-6 font-mono text-xs tracking-widest uppercase text-brass">{site.tagline}</p>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">Services</p>
+        <ul class="space-y-3">
+          {footerServiceLinks.map((link) => (
+            <li><a href={link.href} class="text-sm text-paper/75 hover:text-paper">{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">Company</p>
+        <ul class="space-y-3">
+          {footerCompanyLinks.map((link) => (
+            <li><a href={link.href} class="text-sm text-paper/75 hover:text-paper">{link.label}</a></li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-paper/75">
+          <a href={`mailto:${site.email}`} class="hover:text-paper">{site.email}</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-paper/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-xs text-paper/55">© {year} {site.name}. All rights reserved.</p>
+      <p class="text-xs text-paper/55 font-mono tracking-wide">GUIDING YOUR BUSINESS FORWARD</p>
+    </div>
+  </div>
+</footer>

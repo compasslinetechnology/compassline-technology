@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/sections/Breadcrumbs.astro';
+import FinalCTA from '@/components/sections/FinalCTA.astro';
+
+const allResources = await getCollection('resources', ({ data }) => !data.draft);
+const sorted = allResources.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="Resources"
+  description="Plain-English guides on small business websites, Google Workspace, business email, and domain management from Compassline Technology."
+  path="/resources"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }]}
+>
+  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }]} />
+
+  <section class="pt-14 pb-16 md:pt-16 md:pb-20 bg-paper">
+    <div class="container-content">
+      <p class="eyebrow mb-4">Resources</p>
+      <h1 class="text-4xl md:text-5xl font-semibold max-w-2xl leading-tight">Plain-English guides to small business technology</h1>
+      <p class="mt-5 text-lg text-ink/70 max-w-xl leading-relaxed">
+        Straightforward explanations of the technology decisions small businesses run into most often.
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-paper pt-0">
+    <div class="container-content">
+      {sorted.length === 0 ? (
+        <div class="card max-w-xl">
+          <p class="text-ink/70 leading-relaxed">
+            We're building out this section with practical guides on websites, Google Workspace,
+            business email, and domain management. Check back soon &mdash; or if you have a question
+            you'd like answered now, reach out directly.
+          </p>
+          <a href="/contact" class="btn-outline-navy mt-6 inline-flex">Ask Us a Question</a>
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sorted.map((entry) => (
+            <a href={`/resources/${entry.slug}`} class="card block">
+              <h2 class="text-lg font-semibold text-navy mb-2">{entry.data.title}</h2>
+              <p class="text-sm text-ink/70 leading-relaxed">{entry.data.description}</p>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Have a technology question of your own?"
+    primaryCta={{ label: 'Schedule a Consultation', href: '/contact' }}
+  />
+</BaseLayout>

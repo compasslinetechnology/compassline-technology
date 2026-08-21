@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ease-route: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-navy;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  ::selection {
+    background: #A9824C33;
+    color: #14263F;
+  }
+
+  :focus-visible {
+    outline: 2px solid #A9824C;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    @apply absolute left-4 -top-16 z-[100] bg-navy text-paper px-4 py-2 rounded-md text-sm font-medium transition-all;
+  }
+  .skip-link:focus {
+    @apply top-4;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.18em] uppercase text-brass;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-brass text-navy hover:bg-brass-light shadow-card hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+  .btn-secondary {
+    @apply btn bg-transparent text-paper border border-paper/40 hover:border-paper hover:bg-white/5;
+  }
+  .btn-outline-navy {
+    @apply btn bg-transparent text-navy border border-navy/25 hover:border-navy hover:bg-navy/5;
+  }
+
+  .card {
+    @apply bg-white rounded-card border border-mist/70 shadow-card hover:shadow-card-hover transition-shadow duration-300 p-7;
+  }
+
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  .container-content {
+    @apply max-w-content mx-auto px-6 md:px-8;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s var(--ease-route), transform 0.6s var(--ease-route);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

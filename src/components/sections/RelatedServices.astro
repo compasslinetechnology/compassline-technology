@@ -1,0 +1,31 @@
+---
+export interface RelatedLink {
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  items: RelatedLink[];
+  heading?: string;
+}
+
+const { items, heading = 'Related Services' } = Astro.props;
+---
+
+<section class="section bg-paper border-t border-mist">
+  <div class="container-content">
+    <p class="eyebrow mb-8">{heading}</p>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {items.map((item) => (
+        <a href={item.href} class="card block group">
+          <h3 class="text-lg font-semibold text-navy mb-2 flex items-center gap-2">
+            {item.title}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </h3>
+          <p class="text-sm text-ink/70 leading-relaxed">{item.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

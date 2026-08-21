@@ -1,0 +1,115 @@
+---
+import { serviceOptions } from '@/site.config';
+---
+
+<form id="contact-form" class="space-y-5" novalidate>
+  <div class="grid sm:grid-cols-2 gap-5">
+    <div>
+      <label for="name" class="block text-sm font-medium text-ink/80 mb-1.5">Name <span class="text-brass">*</span></label>
+      <input type="text" id="name" name="name" required autocomplete="name"
+        class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none" />
+    </div>
+    <div>
+      <label for="business" class="block text-sm font-medium text-ink/80 mb-1.5">Business Name</label>
+      <input type="text" id="business" name="business" autocomplete="organization"
+        class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none" />
+    </div>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-5">
+    <div>
+      <label for="email" class="block text-sm font-medium text-ink/80 mb-1.5">Email <span class="text-brass">*</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email"
+        class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none" />
+    </div>
+    <div>
+      <label for="phone" class="block text-sm font-medium text-ink/80 mb-1.5">Phone</label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel"
+        class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none" />
+    </div>
+  </div>
+
+  <div>
+    <label for="website" class="block text-sm font-medium text-ink/80 mb-1.5">Current Website (if any)</label>
+    <input type="text" id="website" name="website" placeholder="yourbusiness.com"
+      class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none" />
+  </div>
+
+  <div>
+    <label for="service" class="block text-sm font-medium text-ink/80 mb-1.5">Service Interested In <span class="text-brass">*</span></label>
+    <select id="service" name="service" required
+      class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none">
+      <option value="" disabled selected>Select a service</option>
+      {serviceOptions.map((opt) => (
+        <option value={opt.value}>{opt.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-ink/80 mb-1.5">Message <span class="text-brass">*</span></label>
+    <textarea id="message" name="message" rows="5" required
+      class="w-full rounded-lg border border-mist bg-white px-4 py-3 text-sm focus:border-navy focus:ring-1 focus:ring-navy outline-none"
+      placeholder="Tell us a bit about your business and what you need."></textarea>
+  </div>
+
+  <div id="form-status" role="status" aria-live="polite" class="text-sm hidden"></div>
+
+  <button type="submit" id="form-submit" class="btn-primary w-full sm:w-auto">Send Message</button>
+  <p class="text-xs text-ink/50">Fields marked <span class="text-brass">*</span> are required.</p>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const submitBtn = document.getElementById('form-submit') as HTMLButtonElement | null;
+
+  // Pre-select the service dropdown from a ?service= query param, set by each
+  // service page's CTA link (e.g. /contact?service=google-workspace).
+  const params = new URLSearchParams(window.location.search);
+  const preselect = params.get('service');
+  if (preselect) {
+    const select = document.getElementById('service') as HTMLSelectElement | null;
+    if (select && [...select.options].some((o) => o.value === preselect)) {
+      select.value = preselect;
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (!status || !submitBtn) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    status.classList.remove('hidden', 'text-red-600', 'text-harbor');
+
+    try {
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      // Posts to a Cloudflare Pages Function at /api/contact.
+      // See functions/api/contact.js — wire up an email provider there.
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('Request failed');
+
+      status.textContent = "Thanks — we've received your message and will be in touch shortly.";
+      status.classList.add('text-harbor');
+      form.reset();
+    } catch (err) {
+      status.textContent = `Something went wrong sending your message. Please email us directly at hello@compasslinetechnology.com.`;
+      status.classList.add('text-red-600');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>

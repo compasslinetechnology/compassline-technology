@@ -1,0 +1,39 @@
+---
+export interface Feature {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  features: Feature[];
+  columns?: 2 | 3;
+  tone?: 'paper' | 'mist';
+}
+
+const { heading, subheading, features, columns = 3, tone = 'paper' } = Astro.props;
+const gridClass = columns === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3';
+---
+
+<section class:list={['section', tone === 'mist' ? 'bg-white border-t border-b border-mist' : 'bg-paper']}>
+  <div class="container-content">
+    <div class="max-w-2xl mb-12 reveal">
+      <h2 class="text-3xl md:text-4xl font-semibold">{heading}</h2>
+      {subheading && <p class="mt-4 text-lg text-ink/70 leading-relaxed">{subheading}</p>}
+    </div>
+    <div class:list={['grid gap-x-10 gap-y-9', gridClass]}>
+      {features.map((f, i) => (
+        <div class="reveal" style={`transition-delay: ${(i % 3) * 60}ms`}>
+          <div class="flex items-start gap-3">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brass flex-shrink-0" aria-hidden="true"></span>
+            <div>
+              <h3 class="font-semibold text-navy mb-1.5">{f.title}</h3>
+              <p class="text-sm text-ink/70 leading-relaxed">{f.body}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

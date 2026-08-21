@@ -1,0 +1,32 @@
+---
+const steps = [
+  { number: '01', title: 'Discover', body: "We learn your business, your customers, and what's actually slowing your technology down." },
+  { number: '02', title: 'Build', body: 'We design and configure the right systems: website, email, Workspace, domain, whatever the business needs.' },
+  { number: '03', title: 'Launch', body: 'We deploy, test, secure, and connect everything so it works together from day one.' },
+  { number: '04', title: 'Manage', body: 'We stay on as your ongoing technology partner, handling maintenance and support as things change.' },
+];
+---
+
+<section class="section bg-paper">
+  <div class="container-content">
+    <div class="max-w-2xl mb-16 reveal">
+      <p class="eyebrow mb-4">How We Work</p>
+      <h2 class="text-3xl md:text-4xl font-semibold">A clear route, start to finish</h2>
+    </div>
+
+    <div class="relative">
+      <div class="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-mist" aria-hidden="true"></div>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-6">
+        {steps.map((step, i) => (
+          <div class="reveal relative" style={`transition-delay: ${i * 90}ms`}>
+            <div class="relative z-10 w-12 h-12 rounded-full bg-navy text-paper flex items-center justify-center font-mono text-xs tracking-wider mb-5">
+              {step.number}
+            </div>
+            <h3 class="text-lg font-semibold text-navy mb-2">{step.title}</h3>
+            <p class="text-sm text-ink/70 leading-relaxed">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

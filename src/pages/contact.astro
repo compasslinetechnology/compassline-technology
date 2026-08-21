@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/sections/Breadcrumbs.astro';
+import ContactForm from '@/components/forms/ContactForm.astro';
+import { site } from '@/site.config';
+---
+
+<BaseLayout
+  title="Let's Talk About Your Business"
+  description="Schedule a consultation with Compassline Technology to talk about your website, Google Workspace, business email, or ongoing technology support."
+  path="/contact"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]}
+>
+  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]} />
+
+  <section class="bg-navy pt-14 pb-16 md:pt-16 md:pb-20">
+    <div class="container-content">
+      <p class="eyebrow mb-4">Contact</p>
+      <h1 class="text-4xl md:text-5xl font-semibold text-paper max-w-2xl leading-tight">Let's Talk About Your Business</h1>
+      <p class="mt-5 text-lg text-paper/75 max-w-xl leading-relaxed">
+        Tell us a bit about what you need, and we'll follow up to schedule a consultation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-paper">
+    <div class="container-content grid lg:grid-cols-5 gap-12">
+      <div class="lg:col-span-3">
+        <div class="card">
+          <ContactForm />
+        </div>
+      </div>
+
+      <aside class="lg:col-span-2 space-y-8">
+        <div>
+          <p class="eyebrow mb-3">Email Us Directly</p>
+          <a href={`mailto:${site.email}`} class="text-lg font-semibold text-navy hover:text-harbor">{site.email}</a>
+        </div>
+        <div>
+          <p class="eyebrow mb-3">What Happens Next</p>
+          <ol class="space-y-3 text-sm text-ink/70">
+            <li class="flex gap-3"><span class="font-mono text-brass">01</span> We review your message and follow up to schedule a consultation.</li>
+            <li class="flex gap-3"><span class="font-mono text-brass">02</span> We learn about your business and current technology setup.</li>
+            <li class="flex gap-3"><span class="font-mono text-brass">03</span> We recommend a clear next step — no pressure, no jargon.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,83 @@
+---
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  subheading: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  compact?: boolean;
+}
+
+const { eyebrow, heading, subheading, primaryCta, secondaryCta, compact = false } = Astro.props;
+---
+
+<section class:list={['bg-navy relative overflow-hidden', compact ? 'pt-16 pb-20 md:pt-20 md:pb-24' : 'pt-20 pb-24 md:pt-28 md:pb-32']}>
+  <div class="container-content relative z-10 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      {eyebrow && <p class="eyebrow mb-5">{eyebrow}</p>}
+      <h1 class="text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.08] font-semibold text-paper tracking-tight">
+        {heading}
+      </h1>
+      <p class="mt-6 text-lg text-paper/75 leading-relaxed max-w-xl">
+        {subheading}
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a href={primaryCta.href} class="btn-primary">{primaryCta.label}</a>
+        {secondaryCta && <a href={secondaryCta.href} class="btn-secondary">{secondaryCta.label}</a>}
+      </div>
+    </div>
+
+    <div class="relative hidden md:block" aria-hidden="true">
+      <!-- Signature element: a drawn route line connecting waypoints, evoking a course
+           plotted on a chart. Draws itself in on load via stroke-dashoffset. -->
+      <svg viewBox="0 0 460 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+        <g opacity="0.18" stroke="#F2F4F1" stroke-width="0.5">
+          <line x1="0" y1="60" x2="460" y2="60" />
+          <line x1="0" y1="150" x2="460" y2="150" />
+          <line x1="0" y1="240" x2="460" y2="240" />
+          <line x1="0" y1="330" x2="460" y2="330" />
+          <line x1="90" y1="0" x2="90" y2="380" />
+          <line x1="230" y1="0" x2="230" y2="380" />
+          <line x1="370" y1="0" x2="370" y2="380" />
+        </g>
+
+        <path
+          id="route-path"
+          d="M40 330 C 110 330, 100 240, 160 220 S 240 260, 280 190 S 330 90, 410 60"
+          stroke="#A9824C"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"
+          pathLength="100"
+        />
+
+        <circle cx="40" cy="330" r="5" fill="#14263F" stroke="#A9824C" stroke-width="2" />
+        <circle cx="160" cy="220" r="4" fill="#14263F" stroke="#F2F4F1" stroke-width="1.5" />
+        <circle cx="280" cy="190" r="4" fill="#14263F" stroke="#F2F4F1" stroke-width="1.5" />
+        <circle cx="410" cy="60" r="6" fill="#A9824C" />
+
+        <text x="16" y="352" fill="#F2F4F1" opacity="0.55" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">START</text>
+        <text x="384" y="46" fill="#F2F4F1" opacity="0.75" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">FORWARD</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  #route-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: draw-route 1.8s var(--ease-route, ease-out) 0.3s forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #route-path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes draw-route {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

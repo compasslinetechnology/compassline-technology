@@ -1,0 +1,38 @@
+---
+const points = [
+  {
+    title: 'One Point of Contact',
+    body: "Stop juggling your website company, domain registrar, email provider, and IT support. One team, one relationship.",
+  },
+  {
+    title: 'Built for Small Business',
+    body: 'Solutions sized to match your business, not enterprise complexity you neither need nor want to manage.',
+  },
+  {
+    title: 'Security From the Beginning',
+    body: 'Domains, email authentication, accounts, and websites configured correctly from day one, not patched after a problem.',
+  },
+  {
+    title: 'Technology Without the Confusion',
+    body: 'Technical decisions explained in plain English, with the complexity handled behind the scenes.',
+  },
+];
+---
+
+<section class="section bg-navy text-paper">
+  <div class="container-content">
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="eyebrow mb-4">Why Compassline</p>
+      <h2 class="text-3xl md:text-4xl font-semibold">A partner that fits how small businesses actually work</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-x-10 gap-y-10">
+      {points.map((point, i) => (
+        <div class="reveal border-t border-paper/15 pt-6" style={`transition-delay: ${(i % 2) * 80}ms`}>
+          <h3 class="text-xl font-semibold text-paper mb-2.5">{point.title}</h3>
+          <p class="text-paper/70 leading-relaxed">{point.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
