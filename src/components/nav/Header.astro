@@ -6,21 +6,21 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
 ---
 
 <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-mist">
-  <div class="container-content flex items-center justify-between h-20">
-    <a href="/" class="flex items-center gap-2.5 group" aria-label={`${site.name} home`}>
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <div class="w-full max-w-[1440px] mx-auto px-6 md:px-8 xl:px-10 flex items-center justify-between h-20 gap-4">
+    <a href="/" class="flex items-center gap-2.5 group flex-shrink-0" aria-label={`${site.name} home`}>
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="flex-shrink-0">
         <circle cx="15" cy="15" r="13.5" stroke="#14263F" stroke-width="1.5"/>
         <path d="M9 19L16.5 9.5L14 15.5L21 12.5L13.5 21.5L16 15L9 19Z" fill="#A9824C"/>
       </svg>
-      <span class="font-display text-lg font-semibold text-navy tracking-tight">Compassline<span class="text-brass">.</span></span>
+      <span class="font-display text-lg font-semibold text-navy tracking-tight whitespace-nowrap">Compassline<span class="text-brass">.</span></span>
     </a>
 
-    <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
+    <nav aria-label="Primary" class="hidden xl:flex items-center gap-5 2xl:gap-6 flex-shrink min-w-0">
       {primaryNav.slice(0, -1).map((item) => (
-        <a
+        
           href={item.href}
           class:list={[
-            'text-sm font-medium transition-colors',
+            'text-sm font-medium transition-colors whitespace-nowrap',
             isActive(item.href) ? 'text-navy' : 'text-ink/70 hover:text-navy',
           ]}
           aria-current={isActive(item.href) ? 'page' : undefined}
@@ -30,14 +30,14 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
       ))}
     </nav>
 
-    <div class="hidden lg:block">
-      <a href="/contact" class="btn-primary">Schedule a Consultation</a>
+    <div class="hidden xl:block flex-shrink-0">
+      <a href="/contact" class="btn-primary whitespace-nowrap">Schedule a Consultation</a>
     </div>
 
     <button
       id="menu-toggle"
       type="button"
-      class="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-full text-navy"
+      class="xl:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-full text-navy flex-shrink-0"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Open menu"
@@ -51,10 +51,10 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
     </button>
   </div>
 
-  <div id="mobile-menu" class="lg:hidden hidden border-t border-mist bg-paper">
+  <div id="mobile-menu" class="xl:hidden hidden border-t border-mist bg-paper">
     <nav aria-label="Mobile" class="container-content flex flex-col py-4">
       {primaryNav.map((item) => (
-        <a
+        
           href={item.href}
           class:list={[
             'py-3 text-base font-medium border-b border-mist/70 last:border-0',
